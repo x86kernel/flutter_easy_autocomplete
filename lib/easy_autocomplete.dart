@@ -200,7 +200,7 @@ class _EasyAutocompleteState extends State<EasyAutocomplete> {
                       }))));
     }
     if (!_hasOpenedOverlay) {
-      Overlay.of(context).insert(_overlayEntry!);
+      Overlay.of(context)!.insert(_overlayEntry!);
       setState(() => _hasOpenedOverlay = true);
     }
   }
