@@ -95,6 +95,8 @@ class EasyAutocomplete extends StatefulWidget {
   /// Can be used to validate field value
   final String? Function(String?)? validator;
 
+  final double? suggestionBorderRadius;
+
   /// Creates a autocomplete widget to help you manage your suggestions
   const EasyAutocomplete(
       {this.suggestions,
@@ -116,7 +118,8 @@ class EasyAutocomplete extends StatefulWidget {
       this.suggestionTextStyle = const TextStyle(),
       this.suggestionBackgroundColor,
       this.debounceDuration = const Duration(milliseconds: 400),
-      this.validator})
+      this.validator,
+      this.suggestionBorderRadius})
       : assert(onChanged != null || controller != null,
             'onChanged and controller parameters cannot be both null at the same time'),
         assert(!(controller != null && initialValue != null),
@@ -183,6 +186,7 @@ class _EasyAutocompleteState extends State<EasyAutocomplete> {
                       suggestionTextStyle: widget.suggestionTextStyle,
                       suggestionBackgroundColor:
                           widget.suggestionBackgroundColor,
+                      suggestionBorderRadius: widget.suggestionBorderRadius,
                       onItemTapped: (value) {
                         _controller
                           ..value = TextEditingValue(
@@ -202,9 +206,11 @@ class _EasyAutocompleteState extends State<EasyAutocomplete> {
   }
 
   void closeOverlay() {
+    if (_debounce != null && _debounce!.isActive) _debounce!.cancel();
+
     if (_hasOpenedOverlay) {
       _overlayEntry!.remove();
-      setState(() { 
+      setState(() {
         _hasOpenedOverlay = false;
       });
     }
