@@ -49,7 +49,7 @@ class FilterableList extends StatelessWidget {
       this.suggestionBackgroundColor,
       this.loading = false,
       this.progressIndicatorBuilder,
-      this.containerBorderRadius = 5});
+      this.suggestionBorderRadius = 5});
 
   @override
   Widget build(BuildContext context) {
