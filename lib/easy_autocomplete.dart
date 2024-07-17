@@ -218,6 +218,7 @@ class _EasyAutocompleteState extends State<EasyAutocomplete> {
     if (_hasOpenedOverlay) {
       _overlayEntry!.remove();
       setState(() {
+        _previousAsyncSearchText = '';
         _hasOpenedOverlay = false;
       });
     }
