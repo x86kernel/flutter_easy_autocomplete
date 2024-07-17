@@ -61,7 +61,7 @@ class FilterableList extends StatelessWidget {
         theme.scaffoldBackgroundColor;
 
     return Material(
-      elevation: 5,
+      elevation: elevation,
       borderRadius: BorderRadius.circular(suggestionBorderRadius!),
       color: _suggestionBackgroundColor,
       child: Container(
