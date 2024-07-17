@@ -99,7 +99,7 @@ class EasyAutocomplete extends StatefulWidget {
 
   final num additionalSuggestionOverlayOffsetY;
 
-  final int? suggestionOverlayElevation;
+  final double suggestionOverlayElevation;
 
   /// Creates a autocomplete widget to help you manage your suggestions
   const EasyAutocomplete(
