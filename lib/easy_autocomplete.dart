@@ -97,7 +97,7 @@ class EasyAutocomplete extends StatefulWidget {
 
   final double? suggestionBorderRadius;
 
-  final double? additionalSuggestionOverlayOffsetY;
+  final num? additionalSuggestionOverlayOffsetY;
 
   final int? suggestionOverlayElevation;
 
