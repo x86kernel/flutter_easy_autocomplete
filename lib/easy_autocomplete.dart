@@ -97,6 +97,10 @@ class EasyAutocomplete extends StatefulWidget {
 
   final double? suggestionBorderRadius;
 
+  final double? additionalSuggestionOverlayOffsetY;
+
+  final int? suggestionOverlayElevation;
+
   /// Creates a autocomplete widget to help you manage your suggestions
   const EasyAutocomplete(
       {this.suggestions,
@@ -119,7 +123,9 @@ class EasyAutocomplete extends StatefulWidget {
       this.suggestionBackgroundColor,
       this.debounceDuration = const Duration(milliseconds: 400),
       this.validator,
-      this.suggestionBorderRadius})
+      this.suggestionBorderRadius,
+      this.additionalSuggestionOverlayOffsetY = 0,
+      this.suggestionOverlayElevation = 0})
       : assert(onChanged != null || controller != null,
             'onChanged and controller parameters cannot be both null at the same time'),
         assert(!(controller != null && initialValue != null),
@@ -172,13 +178,14 @@ class _EasyAutocompleteState extends State<EasyAutocomplete> {
       _overlayEntry ??= OverlayEntry(
           builder: (context) => Positioned(
               left: offset.dx,
-              top: offset.dy + size.height + 5.0,
+              top: offset.dy + size.height + widget.additionalSuggestionOverlayOffsetY,
               width: size.width,
               child: CompositedTransformFollower(
                   link: _layerLink,
                   showWhenUnlinked: false,
-                  offset: Offset(0.0, size.height + 5.0),
+                  offset: Offset(0.0, size.height + widget.additionalSuggestionOverlayOffsetY),
                   child: FilterableList(
+                      elevation: widget.suggestionOverlayElevation,
                       loading: _isLoading,
                       suggestionBuilder: widget.suggestionBuilder,
                       progressIndicatorBuilder: widget.progressIndicatorBuilder,
